@@ -1,0 +1,68 @@
+/**首页**/
+.fy_3>a {
+    margin-left: 0;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+/**末页**/
+.fy_5>a {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+/**上一页**/
+.fy_2>a {
+}
+/**下一页**/
+.fy_4>a {
+}
+/**当前页**/
+.fy_on>a {
+    background-color: #e1f1e1;
+}
+/**非当前页**/
+.fy_out>a {
+}
+/**GO**/
+.fy_6>a {
+}
+.fy_6>input {
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    color: #337ab7;
+    text-decoration: none;
+    border: 1px solid #ddd;
+}
+/**总共页**/
+.fy_7 {
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    color: #337ab7;
+    text-decoration: none;
+    border: none;
+}
+/**总共记录条数**/
+.fy_8 {
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    color: #337ab7;
+    text-decoration: none;
+    border: none;
+}
+
+.ykj1_fy>span>a{
+	position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    color: #337ab7;
+    text-decoration: none;
+    /* background-color: #fff; */
+    border: 1px solid #ddd;
+}

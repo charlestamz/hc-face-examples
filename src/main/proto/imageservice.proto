@@ -1,0 +1,221 @@
+syntax = "proto2";
+package image_service;
+option java_multiple_files = true;
+option java_package = "com.kanbig.faceservice";
+/*
+option go_package = "kanbig/face_service";
+option java_multiple_files = true;
+option java_package = "com.kanbig.faceservice";
+option java_outer_classname = "FaceServiceProto";
+option objc_class_prefix = "FS";
+
+*/
+
+message Image {
+  optional bytes data = 1;//图像的二进制数据，非base64编码
+  optional string filename = 2; //文件名，可以参考解析图片格式，可选
+  optional string url = 3; //图片url地址(是否支持，需要咨询服务提供商）
+}
+/**
+reserved
+ */
+enum Format {
+  JPEG = 0;
+  WEBP = 1;
+  PNG = 2;
+}
+
+message ImageRequest {
+  required int32 cam_id = 1; //摄像头id，默认都填1
+  required int32 list_id = 2; //人脸库id
+  required Image image_chunk = 3;//图像数据
+  optional int32 option = 4;//保留
+  optional string personID = 5;//人员id,注册人脸时作为辅助信息，要求唯一
+  optional string name = 6;//人员姓名
+  optional int32 face_id = 7;//人员在名单的唯一索引值
+  optional int32 topn = 8;//人脸搜索时，需要返回的分最高的人数
+}
+
+/**
+人脸比对请求，以图比图
+ */
+
+message CompareImageRequest {
+  required Image img = 1;//要比较的图
+  required Image origin = 2;//人脸的原图
+  optional int32 option = 3;
+}
+
+/**
+人脸数据库比对请求
+ */
+
+message CompareOnDbRequest {
+  required int32 face_id = 1; //人员在名单的唯一索引值
+  required int32 list_id = 2;//人脸库id
+  required Image img = 3;//图像数据
+  optional int32 option = 4;
+}
+/**
+人脸特征比对请求
+ */
+message FeatureCompareRequest {
+  required bytes img_feature = 1;  //特征1
+  required bytes origin_feature = 2; //特征2 人脸原特征
+}
+/**
+人脸特征返回响应
+ */
+message FeatureResponse{
+  required ResponseState state = 1;//请求状态
+  required bytes feature = 2;
+  optional float liveness = 3;//活体score，活体是否打开需要咨询供应商
+  optional string reason = 4;//失败的原因
+}
+
+/**
+人脸比对返回值
+ */
+message FaceCompareResponse{
+  required ResponseState state = 1;//请求状态
+  optional float score = 2;//比对分数
+  optional float liveness = 3;//活体，活体是否打开需要咨询供应商
+  optional string reason = 4;//失败的原因
+}
+message FaceInfo{
+  required int32 x =1 ;
+  required int32 y =2 ;
+  required int32 width = 3;
+  required int32 height = 4;
+  optional float score = 5;
+  optional float quality = 6;
+}
+/**
+人脸人脸定位请求返回的结果
+ */
+message FaceFindResponse {
+  required ResponseState state = 1;//请求状态
+  repeated FaceInfo faces = 2;//人脸搜索结果
+  optional string reason = 3;//失败的原因
+}
+
+/**
+人脸识别请求返回的结果
+ */
+message FaceResponse {
+  repeated FaceIdentity identities = 1;//人脸搜索结果
+}
+/**
+人脸搜索条目
+ */
+message FaceIdentity {
+  optional int32 identity = 1;//face_id，在人脸库的索引
+  optional string name = 2;//姓名
+  optional float score = 3;//比对分数
+  optional string desc = 4;//描述，格式为json信息
+}
+/**
+车牌搜索条目
+ */
+message LPIdentity {
+  optional int32 type = 1;//车牌类型，黄、使馆、新能源、黑、蓝、警、军
+  optional string name = 2;//返回的车牌号码
+  optional float score = 3;//分数
+  optional string desc = 4;//描述，格式为json信息
+}
+/**
+车牌搜索结果
+ */
+message LPResponse {
+  repeated LPIdentity identities = 1;
+}
+/**
+返回值状态
+ */
+enum ResponseState {
+  SUCCESS = 0;
+  FAIL = 1;
+}
+/**
+在人脸库删除人脸的请求
+
+ */
+message RemoveRequest {
+  required int32 face_id = 1;//删除人脸id
+  required int32 list_id = 2;//人脸库id
+}
+/**
+操作返回
+ */
+message OpResponse {
+  required ResponseState state = 1;
+  optional int32 face_id = 2;//人脸id
+  optional float quality = 3;//人脸质量
+  optional string reason = 4;//失败原因
+}
+
+service KanbigImageService {
+
+  /**
+    enroll a face image
+    注册一张人脸
+   */
+  rpc Enroll (ImageRequest) returns (OpResponse) {
+  }
+  //
+  /**
+  更新一张人脸
+  update face feature against the faceId
+   */
+  rpc Update(ImageRequest) returns(OpResponse){
+
+  }
+  /**
+  remove faceId and the face feature
+  删除人脸特征
+  注意：删除不会进行真正的物理删除核内存释放，只是清除改位置的人脸数据
+   */
+  rpc Remove(RemoveRequest) returns(OpResponse){
+
+  }
+
+  /**
+  人脸比对，比对两张人脸图像是否相识
+   compare faces
+   */
+  rpc CompareImage (CompareImageRequest) returns (FaceCompareResponse) {
+  }
+  /**
+    人脸比对，输入为人脸数据，比对一张人脸和人脸数据库中已有的数据
+   */
+  rpc CompareOnDb (CompareOnDbRequest) returns (FaceCompareResponse) {
+  }
+  /**
+  计算人脸特征值
+   */
+  rpc GetFeature(ImageRequest) returns(FeatureResponse){
+  }
+
+  /**
+    唯一确定一张人脸
+   */
+  rpc IdentifyFace (ImageRequest) returns (FaceResponse) {
+  }
+  /**
+  搜索所有可能的人脸
+   */
+  rpc SearchFace (ImageRequest) returns (FaceResponse) {
+  }
+  /**
+  搜索车牌
+   */
+  rpc SearchPlate (ImageRequest) returns (LPResponse) {
+  }
+  /**
+  查找人脸在图片中的位置
+   */
+  rpc FindFaces(ImageRequest) returns (FaceFindResponse){
+
+  }
+
+}

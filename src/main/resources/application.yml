@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: face-examples
+  servlet:
+          multipart:
+              enabled: true
+              max-file-size: 50MB # 单个文件的最大值
+              max-request-size: 500MB # 上传文件总的最大值
+server:
+  port: 8080
+  servlet:
+    context-path: /${spring.application.name}
+    
+#management:
+#  endpoint:
+#    health:
+#      enabled: true
+#spring.thymeleaf.mode=HTML5
+#spring.thymeleaf.encoding=UTF-8
+#spring.thymeleaf.content-type=text/html
+#spring.thymeleaf.cache=false
+
+
+#plugins.rules.path=
+#plugins.apps.path=

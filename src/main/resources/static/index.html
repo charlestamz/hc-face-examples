@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>人脸识别demo</title>
+<link rel="stylesheet"
+	href="/face-examples/css/bootstrap/bootstrap.min.css"></link>
+<link rel="stylesheet"
+	href="/face-examples/css/metisMenu/metisMenu.min.css"></link>
+<link rel="stylesheet" href="/face-examples/css/element-ui/index.css"></link>
+<link rel="stylesheet" href="/face-examples/css/admin/sb-admin-2.css"></link>
+<link rel="stylesheet"
+	href="/face-examples/css/font-awesome-4.7.0/font-awesome.min.css"></link>
+<!--[if lt IE 9]>
+ <script src="/face-examples/js/html5shiv.js"></script>
+ <script src="/face-examples/js/respond.min.js"></script>
+<![endif]-->
+<script src="/face-examples/js/vue.js"></script>
+<script src="/face-examples/js/element-ui/index.js"></script>
+<script src="/face-examples/js/jquery-1.12.4.min.js"></script>
+<script src="/face-examples/js/moment.min.js"></script>
+<script src="/face-examples/js/bootstrap/bootstrap.min.js"></script>
+<script src="/face-examples/js/admin/sb-admin-2.js"></script>
+<script src="/face-examples/js/metisMenu/metisMenu.min.js"></script>
+<script src="/face-examples/js/layer/layer.js"></script>
+<script src="/face-examples/js/utils.js"></script>
+<script type="text/javascript">
+	$(function() {
+		new Vue({
+			el : '#app',
+			data : function() {
+				return {
+					now : Date.now(),
+					dialog1:false,
+					dialog2:false,
+					dialog3:false,
+					dialog4:false,
+					dialog5:false,
+					dialog6:false,
+					dialog7:false
+				}
+			},
+			methods : {
+				clear:function(){
+					$("#log").html("日志输出：");
+				},
+				enroll : function() {
+					this.$data.dialog2 = false;
+					var formData = new FormData();
+					for(var i=0; i<this.$refs.files2.files.length;i++){
+					    formData.append('files', this.$refs.files2.files[i]);
+					}
+					 formData.append('personId', this.$refs.personId2.value);
+					var that = this;
+					$.ajax({
+						url : "/face-examples/demo/enroll",
+						data : formData,
+						type : "POST",
+						processData: false,
+		                contentType: false,
+						dataType : "json",
+						success : function(res) {
+							$("#log").append("<br/>----------------------------------------------------enroll：注册------------------------------------------------------------");
+							if(res.data){
+								res.data.forEach((a,i)=>{
+									$("#log").append("<br/>用户ID："+a.personId);
+									$("#log").append("<br/>图片名称："+a.fileName);
+									$("#log").append("<br/>处理结果："+a.result);
+									$("#log").append("<br/>开始时间："+moment(a.t1).format("YYYY-MM-DD HH:mm:ss"))
+									$("#log").append("<br/>处理图片结束时间："+moment(a.t2).format("YYYY-MM-DD HH:mm:ss")+"，耗时："+(a.t2-a.t1)+"ms")
+									$("#log").append("<br/>请求人脸服务结束时间："+moment(a.t3).format("YYYY-MM-DD HH:mm:ss")+"，耗时："+(a.t3-a.t2)+"ms")
+									$("#log").append("<br/>总耗时："+(a.t3-a.t1)+"ms")
+								});
+							} else {
+								$("#log").append("<br/>"+JSON.stringify(res))
+							}
+						}
+					});
+				},
+				compareOnDb : function() {
+					this.$data.dialog4 = false;
+					var formData = new FormData();
+					for(var i=0; i<this.$refs.files4.files.length;i++){
+					    formData.append('files', this.$refs.files4.files[i]);
+					}
+					 formData.append('faceId', this.$refs.faceId4.value);
+					var that = this;
+					$.ajax({
+						url : "/face-examples/demo/compareOnDb",
+						data : formData,
+						type : "POST",
+						processData: false,
+		                contentType: false,
+						dataType : "json",
+						success : function(res) {
+							$("#log").append("<br/>----------------------------------------------------compareOnDb:对比图片ByFaceId------------------------------------------------------------");
+							if(res.data){
+								res.data.forEach((a,i)=>{
+									$("#log").append("<br/>图片名称："+a.fileName);
+									$("#log").append("<br/>FaceId："+a.faceId);
+									$("#log").append("<br/>处理结果："+a.result);
+									$("#log").append("<br/>开始时间："+moment(a.t1).format("YYYY-MM-DD HH:mm:ss"))
+									$("#log").append("<br/>处理图片结束时间："+moment(a.t2).format("YYYY-MM-DD HH:mm:ss")+"，耗时："+(a.t2-a.t1)+"ms")
+									$("#log").append("<br/>请求人脸服务结束时间："+moment(a.t3).format("YYYY-MM-DD HH:mm:ss")+"，耗时："+(a.t3-a.t2)+"ms")
+									$("#log").append("<br/>总耗时："+(a.t3-a.t1)+"ms")
+								});
+							} else {
+								$("#log").append("<br/>"+JSON.stringify(res))
+							}
+						}
+					});
+				},
+				compareImage : function() {
+					this.$data.dialog3 = false;
+					var formData = new FormData();
+					for(var i=0; i<this.$refs.files3_1.files.length;i++){
+					    formData.append('file1', this.$refs.files3_1.files[i]);
+					}
+					for(var i=0; i<this.$refs.files3_2.files.length;i++){
+					    formData.append('file2', this.$refs.files3_2.files[i]);
+					}
+					var that = this;
+					$.ajax({
+						url : "/face-examples/demo/compareImage",
+						data : formData,
+						type : "POST",
+						processData: false,
+		                contentType: false,
+						dataType : "json",
+						success : function(res) {
+							$("#log").append("<br/>----------------------------------------------------compareImage:对比图片------------------------------------------------------------");
+							if(res.data){
+								res.data.forEach((a,i)=>{
+									$("#log").append("<br/>图片名称："+a.fileName1);
+									$("#log").append("<br/>对比的图片名称："+a.fileName2);
+									$("#log").append("<br/>处理结果："+a.result);
+									$("#log").append("<br/>开始时间："+moment(a.t1).format("YYYY-MM-DD HH:mm:ss"))
+									$("#log").append("<br/>处理图片结束时间："+moment(a.t2).format("YYYY-MM-DD HH:mm:ss")+"，耗时："+(a.t2-a.t1)+"ms")
+									$("#log").append("<br/>请求人脸服务结束时间："+moment(a.t3).format("YYYY-MM-DD HH:mm:ss")+"，耗时："+(a.t3-a.t2)+"ms")
+									$("#log").append("<br/>总耗时："+(a.t3-a.t1)+"ms")
+								});
+							} else {
+								$("#log").append("<br/>"+JSON.stringify(res))
+							}
+						}
+					});
+				},
+				getFeature : function() {
+					this.$data.dialog1 = false;
+					var formData = new FormData();
+					for(var i=0; i<this.$refs.files1.files.length;i++){
+					    formData.append('files', this.$refs.files1.files[i]);
+					}
+					var that = this;
+					$.ajax({
+						url : "/face-examples/demo/getFeature",
+						data : formData,
+						type : "POST",
+						processData: false,
+		                contentType: false,
+						dataType : "json",
+						success : function(res) {
+							$("#log").append("<br/>----------------------------------------------------getFeature:获取特征值------------------------------------------------------------");
+							if(res.data){
+								res.data.forEach((a,i)=>{
+									$("#log").append("<br/>----------------------------------------------------"+i+"------------------------------------------------------------");
+									$("#log").append("<br/>图片名称："+a.fileName);
+									$("#log").append("<br/>处理结果："+a.result);
+									$("#log").append("<br/>Feature："+a.feature);
+									$("#log").append("<br/>开始时间："+moment(a.t1).format("YYYY-MM-DD HH:mm:ss"))
+									$("#log").append("<br/>处理图片结束时间："+moment(a.t2).format("YYYY-MM-DD HH:mm:ss")+"，耗时："+(a.t2-a.t1)+"ms")
+									$("#log").append("<br/>请求人脸服务结束时间："+moment(a.t3).format("YYYY-MM-DD HH:mm:ss")+"，耗时："+(a.t3-a.t2)+"ms")
+									$("#log").append("<br/>总耗时："+(a.t3-a.t1)+"ms")
+								});
+							} else {
+								$("#log").append("<br/>"+JSON.stringify(res))
+							}
+						}
+					});
+				},
+				searchFace : function() {
+					this.$data.dialog5 = false;
+					var formData = new FormData();
+					for(var i=0; i<this.$refs.files5.files.length;i++){
+					    formData.append('files', this.$refs.files5.files[i]);
+					}
+					var that = this;
+					$.ajax({
+						url : "/face-examples/demo/searchFace",
+						data : formData,
+						type : "POST",
+						processData: false,
+		                contentType: false,
+						dataType : "json",
+						success : function(res) {
+							$("#log").append("<br/>----------------------------------------------------searchFace:搜索图像------------------------------------------------------------");
+							if(res.data){
+								res.data.forEach((a,i)=>{
+									$("#log").append("<br/>图片名称："+a.fileName);
+									$("#log").append("<br/>处理结果："+a.result);
+									$("#log").append("<br/>开始时间："+moment(a.t1).format("YYYY-MM-DD HH:mm:ss"))
+									$("#log").append("<br/>处理图片结束时间："+moment(a.t2).format("YYYY-MM-DD HH:mm:ss")+"，耗时："+(a.t2-a.t1)+"ms")
+									$("#log").append("<br/>请求人脸服务结束时间："+moment(a.t3).format("YYYY-MM-DD HH:mm:ss")+"，耗时："+(a.t3-a.t2)+"ms")
+									$("#log").append("<br/>总耗时："+(a.t3-a.t1)+"ms")
+								});
+							} else {
+								$("#log").append("<br/>"+JSON.stringify(res))
+							}
+						}
+					});
+				},
+				identifyFace : function() {
+					this.$data.dialog6 = false;
+					var formData = new FormData();
+					for(var i=0; i<this.$refs.files6.files.length;i++){
+					    formData.append('files', this.$refs.files6.files[i]);
+					}
+					formData.append('personId', this.$refs.personId6.value);
+					var that = this;
+					$.ajax({
+						url : "/face-examples/demo/identifyFace",
+						data : formData,
+						type : "POST",
+						processData: false,
+		                contentType: false,
+						dataType : "json",
+						success : function(res) {
+							$("#log").append("<br/>----------------------------------------------------identifyFace:搜索图像------------------------------------------------------------");
+							if(res.data){
+								res.data.forEach((a,i)=>{
+									$("#log").append("<br/>图片名称："+a.fileName);
+									$("#log").append("<br/>处理结果："+a.result);
+									$("#log").append("<br/>开始时间："+moment(a.t1).format("YYYY-MM-DD HH:mm:ss"))
+									$("#log").append("<br/>处理图片结束时间："+moment(a.t2).format("YYYY-MM-DD HH:mm:ss")+"，耗时："+(a.t2-a.t1)+"ms")
+									$("#log").append("<br/>请求人脸服务结束时间："+moment(a.t3).format("YYYY-MM-DD HH:mm:ss")+"，耗时："+(a.t3-a.t2)+"ms")
+									$("#log").append("<br/>总耗时："+(a.t3-a.t1)+"ms")
+								});
+							} else {
+								$("#log").append("<br/>"+JSON.stringify(res))
+							}
+						}
+					});
+				},
+				findFaces:function() {
+					this.$data.dialog7 = false;
+					var formData = new FormData();
+					for(var i=0; i<this.$refs.files7.files.length;i++){
+					    formData.append('files', this.$refs.files7.files[i]);
+					}
+					var that = this;
+					$.ajax({
+						url : "/face-examples/demo/findFaces",
+						data : formData,
+						type : "POST",
+						processData: false,
+		                contentType: false,
+						dataType : "json",
+						success : function(res) {
+							$("#log").append("<br/>----------------------------------------------------校验人脸:findFaces------------------------------------------------------------");
+							if(res.data){
+								res.data.forEach((a,i)=>{
+									$("#log").append("<br/>图片名称："+a.fileName);
+									$("#log").append("<br/>处理结果："+a.result);
+									$("#log").append("<br/>开始时间："+moment(a.t1).format("YYYY-MM-DD HH:mm:ss"))
+									$("#log").append("<br/>处理图片结束时间："+moment(a.t2).format("YYYY-MM-DD HH:mm:ss")+"，耗时："+(a.t2-a.t1)+"ms")
+									$("#log").append("<br/>请求人脸服务结束时间："+moment(a.t3).format("YYYY-MM-DD HH:mm:ss")+"，耗时："+(a.t3-a.t2)+"ms")
+									$("#log").append("<br/>总耗时："+(a.t3-a.t1)+"ms")
+								});
+							} else {
+								$("#log").append("<br/>"+JSON.stringify(res))
+							}
+						}
+					});
+				}
+			}
+		});
+	});
+</script>
+<style type="text/css">
+html, body, #app {
+	height: 100%;
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+#app {
+	display: block;
+}
+
+.el-container {
+	height: 100%;
+}
+
+.el-aside .el-button {
+	margin: 10px 0 10px 10px;
+	width: 150px;
+}
+
+.log {
+	background: #303133;
+	color: #fff;
+	height: 100%;
+	padding: 10px;
+	overflow-y: auto;
+}
+
+.row {
+	width: 100%;
+}
+
+input {
+	margin: 5px 0;
+}
+
+.mg-top10 {
+	margin-top: 10px;
+}
+</style>
+</head>
+<body>
+	<div id="app">
+		<el-dialog title="计算人脸特征值" :visible.sync="dialog1">
+		 <input type="file" ref="files1" multiple="multiple"/>
+		 <el-button type="primary" class="mg-top10" @click="getFeature">计算</el-button>
+		</el-dialog>
+		<el-dialog title="注册人脸" :visible.sync="dialog2">
+			<span class="row">用户ID：<input type="text" ref="personId2"/></span>
+		    <span class="row">人物头像：<input type="file" ref="files2"/></span>
+		  <el-button type="primary" class="mg-top10" @click="enroll">注册</el-button>
+		</el-dialog>
+		<el-dialog title="对比人脸" :visible.sync="dialog3">
+		    <span class="row">人物头像：<input type="file" ref="files3_1"/></span>
+		    <span class="row">对比的人物头像：<input type="file" ref="files3_2"/></span>
+		  <el-button type="primary" class="mg-top10" @click="compareImage">对比</el-button>
+		</el-dialog>
+		<el-dialog title="对比人脸ByFaceId" :visible.sync="dialog4">
+		   <span class="row">FaceID：<input type="text" ref="faceId4"/></span>
+		    <span class="row">人物头像：<input type="file" ref="files4"/></span>
+		  <el-button type="primary" class="mg-top10" @click="compareOnDb">对比</el-button>
+		</el-dialog>
+		<el-dialog title="搜索人脸" :visible.sync="dialog5">
+		   <span class="row">人物头像：<input type="file" ref="files5"/></span>
+		  <el-button type="primary" class="mg-top10" @click="searchFace">对比</el-button>
+		</el-dialog>
+		<el-dialog title="IdentifyFace" :visible.sync="dialog6">
+			<span class="row">用户ID：<input type="text" ref="personId6"/></span>
+		   <span class="row">人物头像：<input type="file" ref="files6"/></span>
+		  <el-button type="primary" class="mg-top10" @click="identifyFace">IdentifyFace</el-button>
+		</el-dialog>
+		<el-dialog title="校验人脸" :visible.sync="dialog7">
+		   <span class="row">人物头像：<input type="file" ref="files7"/></span>
+		  <el-button type="primary" class="mg-top10" @click="findFaces">校验人脸</el-button>
+		</el-dialog>
+		<el-container> <el-aside width="200px"
+			style="background:#DCDFE6;text-align: center;">
+			 <el-button type="primary" style="margin-top: 50px;" @click="dialog1 = true">计算人脸特征值</el-button>
+			 <el-button type="primary"  @click="dialog2 = true">注册人脸</el-button>
+			  <el-button type="primary"  @click="dialog3 = true">对比人脸</el-button>
+			  <el-button type="primary"  @click="dialog4 = true">对比人脸ByFaceId</el-button>
+			  <el-button type="primary"  @click="dialog5 = true">搜索人脸</el-button>
+			  <el-button type="primary"  @click="dialog6 = true">IdentifyFace</el-button>
+			   <el-button type="primary"  @click="dialog7 = true">校验人脸</el-button>
+			  <el-button type="warning"  @click="clear">清空日志</el-button>
+			</el-aside> 
+			<el-main>
+			<div class="log" id="log">
+			    日志输出：
+			</div>
+			</el-main> 
+			</el-container>
+	</div>
+</body>
+</html>
