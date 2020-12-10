@@ -53,6 +53,7 @@
 					    formData.append('files', this.$refs.files2.files[i]);
 					}
 					 formData.append('personId', this.$refs.personId2.value);
+					 formData.append('option', this.$refs.option2.value);
 					var that = this;
 					$.ajax({
 						url : "/face-examples/demo/enroll",
@@ -86,6 +87,7 @@
 					    formData.append('files', this.$refs.files4.files[i]);
 					}
 					 formData.append('faceId', this.$refs.faceId4.value);
+					 formData.append('option', this.$refs.option4.value);
 					var that = this;
 					$.ajax({
 						url : "/face-examples/demo/compareOnDb",
@@ -121,6 +123,7 @@
 					for(var i=0; i<this.$refs.files3_2.files.length;i++){
 					    formData.append('file2', this.$refs.files3_2.files[i]);
 					}
+					formData.append('option', this.$refs.option3.value);
 					var that = this;
 					$.ajax({
 						url : "/face-examples/demo/compareImage",
@@ -153,6 +156,7 @@
 					for(var i=0; i<this.$refs.files1.files.length;i++){
 					    formData.append('files', this.$refs.files1.files[i]);
 					}
+					formData.append('option', this.$refs.option1.value);
 					var that = this;
 					$.ajax({
 						url : "/face-examples/demo/getFeature",
@@ -186,6 +190,7 @@
 					for(var i=0; i<this.$refs.files5.files.length;i++){
 					    formData.append('files', this.$refs.files5.files[i]);
 					}
+					formData.append('topn', this.$refs.topn5.value);
 					var that = this;
 					$.ajax({
 						url : "/face-examples/demo/searchFace",
@@ -249,6 +254,7 @@
 					for(var i=0; i<this.$refs.files7.files.length;i++){
 					    formData.append('files', this.$refs.files7.files[i]);
 					}
+					formData.append('option', this.$refs.option7.value);
 					var that = this;
 					$.ajax({
 						url : "/face-examples/demo/findFaces",
@@ -324,34 +330,41 @@ input {
 	<div id="app">
 		<el-dialog title="计算人脸特征值" :visible.sync="dialog1">
 		 <input type="file" ref="files1" multiple="multiple"/>
+		 <span class="row">option：<input type="text" ref="option1" value="-1"/></span>
 		 <el-button type="primary" class="mg-top10" @click="getFeature">计算</el-button>
 		</el-dialog>
 		<el-dialog title="注册人脸" :visible.sync="dialog2">
 			<span class="row">用户ID：<input type="text" ref="personId2"/></span>
 		    <span class="row">人物头像：<input type="file" ref="files2"/></span>
+		    <span class="row">option：<input type="text" ref="option2" value="-1"/></span>
 		  <el-button type="primary" class="mg-top10" @click="enroll">注册</el-button>
 		</el-dialog>
 		<el-dialog title="对比人脸" :visible.sync="dialog3">
 		    <span class="row">人物头像：<input type="file" ref="files3_1"/></span>
 		    <span class="row">对比的人物头像：<input type="file" ref="files3_2"/></span>
+		    <span class="row">option：<input type="text" ref="option3" value="-1"/></span>
 		  <el-button type="primary" class="mg-top10" @click="compareImage">对比</el-button>
 		</el-dialog>
 		<el-dialog title="对比人脸ByFaceId" :visible.sync="dialog4">
 		   <span class="row">FaceID：<input type="text" ref="faceId4"/></span>
 		    <span class="row">人物头像：<input type="file" ref="files4"/></span>
+		    <span class="row">option：<input type="text" ref="option4" value="-1"/></span>
 		  <el-button type="primary" class="mg-top10" @click="compareOnDb">对比</el-button>
 		</el-dialog>
 		<el-dialog title="搜索人脸" :visible.sync="dialog5">
 		   <span class="row">人物头像：<input type="file" ref="files5"/></span>
+		   <span class="row">topn：<input type="text" ref="topn5" value="-1"/></span>
 		  <el-button type="primary" class="mg-top10" @click="searchFace">对比</el-button>
 		</el-dialog>
 		<el-dialog title="IdentifyFace" :visible.sync="dialog6">
 			<span class="row">用户ID：<input type="text" ref="personId6"/></span>
 		   <span class="row">人物头像：<input type="file" ref="files6"/></span>
+		   <span class="row">option：<input type="text" ref="option6" value="-1"/></span>
 		  <el-button type="primary" class="mg-top10" @click="identifyFace">IdentifyFace</el-button>
 		</el-dialog>
 		<el-dialog title="校验人脸" :visible.sync="dialog7">
 		   <span class="row">人物头像：<input type="file" ref="files7"/></span>
+		   <span class="row">option：<input type="text" ref="option7" value="-1"/></span>
 		  <el-button type="primary" class="mg-top10" @click="findFaces">校验人脸</el-button>
 		</el-dialog>
 		<el-container> <el-aside width="200px"

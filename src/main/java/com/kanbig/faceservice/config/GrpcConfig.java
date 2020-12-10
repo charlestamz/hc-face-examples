@@ -1,7 +1,6 @@
 package com.kanbig.faceservice.config;
 
 import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
@@ -35,7 +34,7 @@ public class GrpcConfig {
 		/**
 		 * idleTimeout 空闲超时 enableRetry 开启重试，当服务端重启后，客户端可以重连上
 		 */
-		return ManagedChannelBuilder.forAddress(grpcHost, grpcPort).usePlaintext().idleTimeout(3, TimeUnit.SECONDS)
+		return ManagedChannelBuilder.forAddress(grpcHost, grpcPort).usePlaintext().idleTimeout(1, TimeUnit.SECONDS)
 				.enableRetry()
 				.executor(new ThreadPoolExecutor(1, 3, 60L, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(100),
 						new ThreadPoolExecutor.CallerRunsPolicy()))
