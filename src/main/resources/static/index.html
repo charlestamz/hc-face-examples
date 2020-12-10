@@ -190,7 +190,7 @@
 					for(var i=0; i<this.$refs.files5.files.length;i++){
 					    formData.append('files', this.$refs.files5.files[i]);
 					}
-					formData.append('topn', this.$refs.topn4.value);
+					formData.append('topn', this.$refs.topn5.value);
 					var that = this;
 					$.ajax({
 						url : "/face-examples/demo/searchFace",
@@ -254,7 +254,7 @@
 					for(var i=0; i<this.$refs.files7.files.length;i++){
 					    formData.append('files', this.$refs.files7.files[i]);
 					}
-					formData.append('option', this.$refs.option1.value);
+					formData.append('option', this.$refs.option7.value);
 					var that = this;
 					$.ajax({
 						url : "/face-examples/demo/findFaces",
