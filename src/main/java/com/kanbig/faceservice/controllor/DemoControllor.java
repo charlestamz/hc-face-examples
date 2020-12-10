@@ -20,6 +20,7 @@ import com.kanbig.faceservice.FaceResponse;
 import com.kanbig.faceservice.FeatureResponse;
 import com.kanbig.faceservice.Image;
 import com.kanbig.faceservice.ImageRequest;
+import com.kanbig.faceservice.ImageRequest.Builder;
 import com.kanbig.faceservice.KanbigImageServiceGrpc;
 import com.kanbig.faceservice.OpResponse;
 import com.kanbig.faceservice.core.Model;
@@ -35,7 +36,8 @@ public class DemoControllor {
 
 	@PostMapping("enroll")
 	public Result enroll(@RequestParam("files") MultipartFile files,
-			@RequestParam(name = "personId", defaultValue = "") String personId) {
+			@RequestParam(name = "personId", defaultValue = "") String personId,
+			@RequestParam(name = "option", defaultValue = "-1") int option) {
 		List<Model> res = new ArrayList<>();
 		if (files != null) {
 			try {
@@ -44,8 +46,12 @@ public class DemoControllor {
 						.setData(ByteString.copyFrom(files.getBytes())).build();
 				long t2 = System.currentTimeMillis();
 				personId = StringUtils.defaultIfBlank(personId, "test");
-				OpResponse data = service.enroll(ImageRequest.newBuilder().setImageChunk(image).setCamId(cam)
-						.setListId(db).setPersonID(personId).build());
+				Builder c = ImageRequest.newBuilder().setImageChunk(image).setCamId(cam).setListId(db)
+						.setPersonID(personId);
+				if (option > -1) {
+					c.setOption(option);
+				}
+				OpResponse data = service.enroll(c.build());
 				long t3 = System.currentTimeMillis();
 				res.add(Model.build().add("fileName", files.getOriginalFilename()).add("personId", personId)
 						.add("result", data.toString()).add("t1", t1).add("t2", t2).add("t3", t3));
@@ -58,7 +64,8 @@ public class DemoControllor {
 	}
 
 	@PostMapping("getFeature")
-	public Result getFeature(@RequestParam("files") MultipartFile[] files) {
+	public Result getFeature(@RequestParam("files") MultipartFile[] files,
+			@RequestParam(name = "option", defaultValue = "-1") int option) {
 		List<Model> res = new ArrayList<>();
 		if (files != null) {
 			for (MultipartFile file : files) {
@@ -67,8 +74,11 @@ public class DemoControllor {
 					Image image = Image.newBuilder().setFilename(file.getOriginalFilename())
 							.setData(ByteString.copyFrom(file.getBytes())).build();
 					long t2 = System.currentTimeMillis();
-					FeatureResponse data = service.getFeature(
-							ImageRequest.newBuilder().setImageChunk(image).setCamId(1).setListId(1).build());
+					Builder c = ImageRequest.newBuilder().setImageChunk(image).setCamId(1).setListId(1);
+					if (option > -1) {
+						c.setOption(option);
+					}
+					FeatureResponse data = service.getFeature(c.build());
 					long t3 = System.currentTimeMillis();
 
 					res.add(Model.build().add("fileName", file.getOriginalFilename()).add("result", data.toString())
@@ -84,7 +94,8 @@ public class DemoControllor {
 
 	@PostMapping("compareOnDb")
 	public Result compareOnDb(@RequestParam("files") MultipartFile files,
-			@RequestParam(name = "faceId", defaultValue = "") int faceId) {
+			@RequestParam(name = "faceId", defaultValue = "") int faceId,
+			@RequestParam(name = "option", defaultValue = "-1") int option) {
 		List<Model> res = new ArrayList<>();
 		if (files != null) {
 			try {
@@ -92,8 +103,12 @@ public class DemoControllor {
 				Image image = Image.newBuilder().setFilename(files.getOriginalFilename())
 						.setData(ByteString.copyFrom(files.getBytes())).build();
 				long t2 = System.currentTimeMillis();
-				FaceCompareResponse data = service.compareOnDb(
-						CompareOnDbRequest.newBuilder().setImg(image).setFaceId(faceId).setListId(db).build());
+				com.kanbig.faceservice.CompareOnDbRequest.Builder c = CompareOnDbRequest.newBuilder().setImg(image)
+						.setFaceId(faceId).setListId(db);
+				if (option > -1) {
+					c.setOption(option);
+				}
+				FaceCompareResponse data = service.compareOnDb(c.build());
 				long t3 = System.currentTimeMillis();
 				res.add(Model.build().add("fileName", files.getOriginalFilename()).add("faceId", faceId)
 						.add("result", data.toString()).add("t1", t1).add("t2", t2).add("t3", t3));
@@ -105,7 +120,8 @@ public class DemoControllor {
 	}
 
 	@PostMapping("compareImage")
-	public Result compareImage(@RequestParam("file1") MultipartFile file1, @RequestParam("file2") MultipartFile file2) {
+	public Result compareImage(@RequestParam("file1") MultipartFile file1, @RequestParam("file2") MultipartFile file2,
+			@RequestParam(name = "option", defaultValue = "-1") int option) {
 		List<Model> res = new ArrayList<>();
 		if (file1 != null && file2 != null) {
 			try {
@@ -115,8 +131,12 @@ public class DemoControllor {
 				Image image2 = Image.newBuilder().setFilename(file2.getOriginalFilename())
 						.setData(ByteString.copyFrom(file2.getBytes())).build();
 				long t2 = System.currentTimeMillis();
-				FaceCompareResponse data = service
-						.compareImage(CompareImageRequest.newBuilder().setImg(image1).setOrigin(image2).build());
+				com.kanbig.faceservice.CompareImageRequest.Builder c = CompareImageRequest.newBuilder().setImg(image1)
+						.setOrigin(image2);
+				if (option > -1) {
+					c.setOption(option);
+				}
+				FaceCompareResponse data = service.compareImage(c.build());
 				long t3 = System.currentTimeMillis();
 				res.add(Model.build().add("fileName1", file1.getOriginalFilename())
 						.add("fileName2", file2.getOriginalFilename()).add("result", data.toString()).add("t1", t1)
@@ -129,7 +149,8 @@ public class DemoControllor {
 	}
 
 	@PostMapping("searchFace")
-	public Result searchFace(@RequestParam("files") MultipartFile files) {
+	public Result searchFace(@RequestParam("files") MultipartFile files,
+			@RequestParam(name = "topn", defaultValue = "-1") int topn) {
 		List<Model> res = new ArrayList<>();
 		if (files != null) {
 			try {
@@ -137,8 +158,11 @@ public class DemoControllor {
 				Image image = Image.newBuilder().setFilename(files.getOriginalFilename())
 						.setData(ByteString.copyFrom(files.getBytes())).build();
 				long t2 = System.currentTimeMillis();
-				FaceResponse data = service
-						.searchFace(ImageRequest.newBuilder().setImageChunk(image).setCamId(cam).setListId(db).build());
+				Builder c = ImageRequest.newBuilder().setImageChunk(image).setCamId(cam).setListId(db);
+				if (topn > -1) {
+					c.setTopn(topn);
+				}
+				FaceResponse data = service.searchFace(c.build());
 				long t3 = System.currentTimeMillis();
 				res.add(Model.build().add("fileName", files.getOriginalFilename()).add("result", data.toString())
 						.add("t1", t1).add("t2", t2).add("t3", t3));
@@ -151,7 +175,8 @@ public class DemoControllor {
 
 	@PostMapping("identifyFace")
 	public Result identifyFace(@RequestParam("files") MultipartFile files,
-			@RequestParam(name = "personId", defaultValue = "") String personId) {
+			@RequestParam(name = "personId", defaultValue = "") String personId,
+			@RequestParam(name = "option", defaultValue = "-1") int option) {
 		List<Model> res = new ArrayList<>();
 		personId = StringUtils.defaultIfBlank(personId, "test");
 		if (files != null) {
@@ -160,8 +185,12 @@ public class DemoControllor {
 				Image image = Image.newBuilder().setFilename(files.getOriginalFilename())
 						.setData(ByteString.copyFrom(files.getBytes())).build();
 				long t2 = System.currentTimeMillis();
-				FaceResponse data = service.identifyFace(
-						ImageRequest.newBuilder().setImageChunk(image).setPersonID(personId).setCamId(cam).setListId(db).build());
+				Builder c = ImageRequest.newBuilder().setImageChunk(image).setPersonID(personId).setCamId(cam)
+						.setListId(db);
+				if (option > -1) {
+					c.setOption(option);
+				}
+				FaceResponse data = service.identifyFace(c.build());
 				long t3 = System.currentTimeMillis();
 				res.add(Model.build().add("fileName", files.getOriginalFilename()).add("result", data.toString())
 						.add("t1", t1).add("t2", t2).add("t3", t3));
@@ -171,10 +200,10 @@ public class DemoControllor {
 		}
 		return Result.success(res);
 	}
-	
-	
+
 	@PostMapping("findFaces")
-	public Result findFaces(@RequestParam("files") MultipartFile files) {
+	public Result findFaces(@RequestParam("files") MultipartFile files,
+			@RequestParam(name = "option", defaultValue = "-1") int option) {
 		List<Model> res = new ArrayList<>();
 		if (files != null) {
 			try {
@@ -182,8 +211,11 @@ public class DemoControllor {
 				Image image = Image.newBuilder().setFilename(files.getOriginalFilename())
 						.setData(ByteString.copyFrom(files.getBytes())).build();
 				long t2 = System.currentTimeMillis();
-				 FaceFindResponse data = service.findFaces(
-						ImageRequest.newBuilder().setImageChunk(image).setCamId(cam).setListId(db).build());
+				Builder c = ImageRequest.newBuilder().setImageChunk(image).setCamId(cam).setListId(db);
+				if (option > -1) {
+					c.setOption(option);
+				}
+				FaceFindResponse data = service.findFaces(c.build());
 				long t3 = System.currentTimeMillis();
 				res.add(Model.build().add("fileName", files.getOriginalFilename()).add("result", data.toString())
 						.add("t1", t1).add("t2", t2).add("t3", t3));
