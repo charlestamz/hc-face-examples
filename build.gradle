@@ -1,12 +1,35 @@
-plugins {
-    // Provide convenience executables for trying out the examples.
-    id 'application'
-    // ASSUMES GRADLE 2.12 OR HIGHER. Use plugin version 0.7.5 with earlier gradle versions
-    id 'com.google.protobuf' version '0.8.5'
-    // Generate IntelliJ IDEA's .idea & .iml project files
-    id 'idea'
+buildscript {
+    ext {
+        springBootVersion = '2.1.5.RELEASE'
+        springCloudVersion = 'Greenwich.SR1'
+    }
+    repositories {
+        maven { url 'https://maven.aliyun.com/repository/public' }
+	    maven { url 'https://repo1.maven.org/maven2'}
+	    maven {
+	      url "https://plugins.gradle.org/m2/"
+	    }
+	    mavenCentral()
+	    mavenLocal()
+    }
+
+    dependencies {//用来打包
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("gradle.plugin.com.google.protobuf:protobuf-gradle-plugin:0.8.5")
+    }
 }
 
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot' 
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'application'
+apply plugin: 'com.google.protobuf'
+
+jar {
+    baseName = "examples"
+}
+group = 'com.kanbig.faceservice'
+version = '0.0.1'
 repositories {
 /*
     maven { // The google mirror is less flaky than mavenCentral()
@@ -19,9 +42,8 @@ repositories {
     mavenLocal()
 }
 
-
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 // IMPORTANT: You probably want the non-SNAPSHOT version of gRPC. Make sure you
 // are looking at a tagged version of the example and not "master"!
@@ -42,10 +64,17 @@ dependencies {
     implementation "com.google.protobuf:protobuf-java-util:${protobufVersion}"
 
     runtimeOnly "io.grpc:grpc-netty-shaded:${grpcVersion}"
-
+    
+	compile('org.springframework.boot:spring-boot-starter')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.apache.commons:commons-lang3')
+	
     testImplementation "io.grpc:grpc-testing:${grpcVersion}"
     testImplementation "junit:junit:4.12"
     testImplementation "org.mockito:mockito-core:2.25.1"
+    
+    compileOnly 'org.projectlombok:lombok:1.18.6'
+    annotationProcessor 'org.projectlombok:lombok:1.18.6'
 }
 
 protobuf {
@@ -67,14 +96,12 @@ sourceSets {
         }
     }
 }
-
 startScripts.enabled = false
 
 
-
 task FaceServiceClient(type: CreateStartScripts) {
-    mainClassName = 'com.kanbig.faceservice.FaceServiceClient'
-    applicationName = 'faceservice-client'
+    mainClassName = 'com.kanbig.faceservice.Application'
+    applicationName = 'face-examples'
     outputDir = new File(project.buildDir, 'tmp')
     classpath = startScripts.classpath
 }
@@ -83,4 +110,9 @@ task FaceServiceClient(type: CreateStartScripts) {
 applicationDistribution.into('bin') {
     from(FaceServiceClient)
     fileMode = 0755
+}
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
 }
