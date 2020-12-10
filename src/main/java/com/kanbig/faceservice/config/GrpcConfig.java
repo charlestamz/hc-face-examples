@@ -37,8 +37,7 @@ public class GrpcConfig {
 		 */
 		return ManagedChannelBuilder.forAddress(grpcHost, grpcPort).usePlaintext().idleTimeout(3, TimeUnit.SECONDS)
 				.enableRetry()
-				.executor(new ThreadPoolExecutor(0, 3, 60L, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(100),
-						// 抛弃当前的任务
+				.executor(new ThreadPoolExecutor(1, 3, 60L, TimeUnit.SECONDS, new ArrayBlockingQueue<Runnable>(100),
 						new ThreadPoolExecutor.CallerRunsPolicy()))
 				.build();
 	}
