@@ -3,6 +3,7 @@ package com.kanbig.faceservice.controllor;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.protobuf.ByteString;
+import com.kanbig.faceservice.CompareFeatureRequest;
 import com.kanbig.faceservice.CompareImageRequest;
 import com.kanbig.faceservice.CompareOnDbRequest;
 import com.kanbig.faceservice.FaceCompareResponse;
@@ -63,8 +65,8 @@ public class DemoControllor {
 		return Result.success(res);
 	}
 
-	@PostMapping("getFeature")
-	public Result getFeature(@RequestParam("files") MultipartFile[] files,
+	@PostMapping("getFeatures")
+	public Result getFeatures(@RequestParam("files") MultipartFile[] files,
 			@RequestParam(name = "option", defaultValue = "-1") int option) {
 		List<Model> res = new ArrayList<>();
 		if (files != null) {
@@ -225,4 +227,59 @@ public class DemoControllor {
 		}
 		return Result.success(res);
 	}
+
+	@PostMapping("compareFeature")
+	public Result compareFeature(@RequestParam("file") MultipartFile file,
+			@RequestParam(name = "feature") String feature,
+			@RequestParam(name = "option", defaultValue = "9") int option) {
+		List<Model> res = new ArrayList<>();
+		if (file != null) {
+			try {
+				long t1 = System.currentTimeMillis();
+				Image image = Image.newBuilder().setFilename(file.getOriginalFilename())
+						.setData(ByteString.copyFrom(file.getBytes())).build();
+				long t2 = System.currentTimeMillis();
+				CompareFeatureRequest request = CompareFeatureRequest.newBuilder()
+						.setFeature(ByteString.copyFrom(Base64.decodeBase64(feature))).setImg(image).setOption(option)
+						.build();
+				FaceCompareResponse data = service.compareFeature(request);
+				long t3 = System.currentTimeMillis();
+				return Result.success(Model.build().add("fileName", file.getOriginalFilename())
+						.add("result", data.toString()).add("t1", t1).add("t2", t2).add("t3", t3));
+			} catch (Exception e) {
+				return Result.error(e.getMessage());
+			}
+		}
+		return Result.success(res);
+	}
+
+	@PostMapping("getFeature")
+	public Result getFeature(@RequestParam("file") MultipartFile file,
+			@RequestParam(name = "option", defaultValue = "9") int option) {
+		List<Model> res = new ArrayList<>();
+		if (file != null) {
+			try {
+				long t1 = System.currentTimeMillis();
+				Image image = Image.newBuilder().setFilename(file.getOriginalFilename())
+						.setData(ByteString.copyFrom(file.getBytes())).build();
+				long t2 = System.currentTimeMillis();
+				Builder c = ImageRequest.newBuilder().setImageChunk(image).setCamId(1).setListId(1);
+				if (option > -1) {
+					c.setOption(option);
+				}
+				FeatureResponse data = service.getFeature(c.build());
+				long t3 = System.currentTimeMillis();
+				return Result.success(
+						Model.build().add("fileName", file.getOriginalFilename()).add("result", data.toString())
+								.add("feature",
+										data.getFeature() == null ? null
+												: Base64.encodeBase64String(data.getFeature().toByteArray()))
+								.add("t1", t1).add("t2", t2).add("t3", t3));
+			} catch (Exception e) {
+				return Result.error(e.getMessage());
+			}
+		}
+		return Result.success(res);
+	}
+
 }
