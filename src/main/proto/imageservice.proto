@@ -45,6 +45,23 @@ message CompareImageRequest {
   required Image origin = 2;//人脸的原图
   optional int32 option = 3;
 }
+/**
+人脸Feature比对请求，以图比图
+ */
+
+message CompareFeatureRequest {
+  required Image img = 1;//要比较的图
+  required bytes feature = 2;//人脸的原图
+  optional int32 option = 3;
+}
+/**
+人脸特征比对请求
+ */
+message Compare2FeatureRequest {
+  required bytes compare = 1;//要比较的图的特征
+  required bytes feature = 2;//人脸的原图的特征
+}
+
 
 /**
 人脸数据库比对请求
@@ -56,19 +73,13 @@ message CompareOnDbRequest {
   required Image img = 3;//图像数据
   optional int32 option = 4;
 }
-/**
-人脸特征比对请求
- */
-message FeatureCompareRequest {
-  required bytes img_feature = 1;  //特征1
-  required bytes origin_feature = 2; //特征2 人脸原特征
-}
+
 /**
 人脸特征返回响应
  */
 message FeatureResponse{
   required ResponseState state = 1;//请求状态
-  required bytes feature = 2;
+  optional bytes feature = 2;
   optional float liveness = 3;//活体score，活体是否打开需要咨询供应商
   optional string reason = 4;//失败的原因
 }
@@ -190,6 +201,18 @@ service KanbigImageService {
    */
   rpc CompareOnDb (CompareOnDbRequest) returns (FaceCompareResponse) {
   }
+
+  /**
+  人脸比对，输入为人脸数据，比对一张人脸图像和featuree
+ */
+  rpc CompareFeature (CompareFeatureRequest) returns (FaceCompareResponse) {
+  }
+  /**
+    两个人脸特征比对，输入为人脸特征值，比对feature1和feature2
+   */
+  rpc Compare2Feature (Compare2FeatureRequest) returns (FaceCompareResponse) {
+  }
+
   /**
   计算人脸特征值
    */
@@ -197,7 +220,7 @@ service KanbigImageService {
   }
 
   /**
-    唯一确定一张人脸
+    确定图片中每张人脸在对应数据比对名单的身份
    */
   rpc IdentifyFace (ImageRequest) returns (FaceResponse) {
   }

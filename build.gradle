@@ -67,7 +67,10 @@ dependencies {
     
 	compile('org.springframework.boot:spring-boot-starter')
 	compile('org.springframework.boot:spring-boot-starter-web')
-	compile('org.apache.commons:commons-lang3')
+	compile(
+		'org.apache.commons:commons-lang3',
+		"commons-codec:commons-codec",
+		)
 	
     testImplementation "io.grpc:grpc-testing:${grpcVersion}"
     testImplementation "junit:junit:4.12"
