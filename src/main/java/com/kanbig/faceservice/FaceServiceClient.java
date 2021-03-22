@@ -188,22 +188,49 @@ public class FaceServiceClient {
         logger.info("compareOnDb: " + response.getScore());
     }
 
+    public void findVehicles(String filename) {
+        logger.info("Will try to getFeature " + filename + " ...");
+        byte[] fileContent;
+        Image image;
+        ImageRequest request = null;
+        try {
+            File file = new File(filename);
+            fileContent = Files.readAllBytes(file.toPath());
+            image = Image.newBuilder().setFilename(file.getName()).setData(ByteString.copyFrom(fileContent)).build();
+            request = ImageRequest.newBuilder().setCamId(0).setListId(0).setImageChunk(image).setOption(1).build();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        VehicleResponse response;
+        try {
+            response = blockingStub.findVehicles(request);
+        } catch (StatusRuntimeException e) {
+            logger.log(Level.WARNING, "RPC failed: {0}", e.getStatus());
+            return;
+        }
+        for (VehicleInfo v : response.getIdentitiesList()) {
+
+          logger.log(Level.INFO, v.toString());
+        }
+    }
+
     /**
      * Greet server. If provided, the first element of {@code args} is the name to use in the
      * greeting.
      */
     public static void main(String[] args) throws Exception {
-        FaceServiceClient client = new FaceServiceClient("localhost", 50051);
+        FaceServiceClient client = new FaceServiceClient("127.0.0.1", 50051);
         try {
             /* Access a service running on the local machine on port 50051 */
             String user = "world";
             if (args.length > 0) {
                 user = args[0]; /* Use the arg as the name to greet if provided */
             }
-            for(int i=0;i<100;i++) {
-                client.getFeature("/home/charlie/CLionProjects/faceservice/images/10000003.jpg");
-                client.enroll(0, "/home/charlie/CLionProjects/faceservice/images/10000003.jpg", "10000003", "noname1");
-                client.compareOnDb(0, 0, "/home/charlie/CLionProjects/faceservice/images/10000003.jpg");
+            for (int i = 0; i < 1; i++) {
+                client.findVehicles("/home/charlie/CLionProjects/faceservice/images/b1.jpg");
+//                client.enroll(0, "/home/charlie/CLionProjects/faceservice/images/10000003.jpg", "10000003", "noname1");
+//                client.compareOnDb(0, 0, "/home/charlie/CLionProjects/faceservice/images/10000003.jpg");
             }
         } finally {
             client.shutdown();

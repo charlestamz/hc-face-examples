@@ -20,8 +20,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Configuration
 public class GrpcConfig {
-
-	@Value("${grpc.host:work.kanbig.com}")
+//	@Value("${grpc.host:localhost}")
+	@Value("${grpc.host:192.168.1.20}")
 	private String grpcHost;
 	@Value("${grpc.port:50051}")
 	private int grpcPort;
@@ -50,9 +50,9 @@ public class GrpcConfig {
 	public void shutdown() {
 		try {
 			channel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
-			log.info("ManagedChannel ------ shutdown success");
+//			log.info("ManagedChannel ------ shutdown success");
 		} catch (Exception e) {
-			log.warn("ManagedChannel ------ shutdown fail");
+//			log.warn("ManagedChannel ------ shutdown fail");
 		}
 	}
 

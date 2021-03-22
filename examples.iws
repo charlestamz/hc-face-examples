@@ -1,92 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a84ffa2-fa13-4a3a-81fe-2472853ca85e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/BUILD.bazel" beforeDir="false" afterPath="$PROJECT_DIR$/BUILD.bazel" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-alts/BUILD.bazel" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-alts/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-alts/settings.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-alts/src/main/java/io/grpc/examples/alts/HelloWorldAltsClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-alts/src/main/java/io/grpc/examples/alts/HelloWorldAltsServer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-alts/src/main/proto/helloworld/helloworld.proto" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-gauth/BUILD.bazel" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-gauth/GOOGLE_AUTH_EXAMPLE.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-gauth/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-gauth/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-gauth/settings.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-gauth/src/main/java/io/grpc/examples/googleAuth/GoogleAuthClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-kotlin/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-kotlin/android/helloworld/app/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-kotlin/android/helloworld/app/proguard-rules.pro" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-kotlin/android/helloworld/app/src/main/AndroidManifest.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-kotlin/android/helloworld/app/src/main/kotlin/io/grpc/helloworldexample/HelloworldActivity.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-kotlin/android/helloworld/app/src/main/proto/helloworld.proto" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-kotlin/android/helloworld/app/src/main/res/layout/activity_helloworld.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-kotlin/android/helloworld/app/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-kotlin/android/helloworld/app/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-kotlin/android/helloworld/app/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-kotlin/android/helloworld/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-kotlin/android/helloworld/app/src/main/res/values/strings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-kotlin/android/helloworld/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-kotlin/android/helloworld/settings.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-kotlin/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-kotlin/settings.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-kotlin/src/main/kotlin/io/grpc/examples/helloworld/HelloWorldClient.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-kotlin/src/main/kotlin/io/grpc/examples/helloworld/HelloWorldServer.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-kotlin/src/main/proto/helloworld.proto" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-kotlin/src/test/kotlin/io/grpc/examples/helloworld/HelloWorldClientTest.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-kotlin/src/test/kotlin/io/grpc/examples/helloworld/HelloWorldServerTest.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-tls/BUILD.bazel" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-tls/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-tls/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-tls/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-tls/settings.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-tls/src/main/java/io/grpc/examples/helloworldtls/HelloWorldClientTls.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-tls/src/main/java/io/grpc/examples/helloworldtls/HelloWorldServerTls.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example-tls/src/main/proto/helloworld/helloworld.proto" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/grpc/examples/advanced/HelloJsonClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/grpc/examples/advanced/HelloJsonServer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/grpc/examples/advanced/JsonMarshaller.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/grpc/examples/authentication/AuthClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/grpc/examples/authentication/AuthServer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/grpc/examples/authentication/Constant.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/grpc/examples/authentication/JwtClientInterceptor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/grpc/examples/authentication/JwtServerInterceptor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/grpc/examples/errorhandling/DetailErrorSample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/grpc/examples/errorhandling/ErrorHandlingClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/grpc/examples/experimental/CompressingHelloWorldClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/grpc/examples/experimental/CompressingHelloWorldServerAllMethods.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/grpc/examples/experimental/CompressingHelloWorldServerPerMethod.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/grpc/examples/header/CustomHeaderClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/grpc/examples/header/CustomHeaderServer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/grpc/examples/header/HeaderClientInterceptor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/grpc/examples/header/HeaderServerInterceptor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/grpc/examples/helloworld/HelloWorldClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/grpc/examples/helloworld/HelloWorldServer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/grpc/examples/manualflowcontrol/ManualFlowControlClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/grpc/examples/manualflowcontrol/ManualFlowControlServer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/grpc/examples/routeguide/RouteGuideClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/grpc/examples/routeguide/RouteGuideServer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/grpc/examples/routeguide/RouteGuideUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/proto/hello_streaming.proto" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/proto/helloworld.proto" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/proto/route_guide.proto" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/grpc/examples/authentication/AuthClientTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/grpc/examples/header/HeaderClientInterceptorTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/grpc/examples/header/HeaderServerInterceptorTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/grpc/examples/helloworld/HelloWorldClientTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/grpc/examples/helloworld/HelloWorldServerTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/grpc/examples/routeguide/RouteGuideClientTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/io/grpc/examples/routeguide/RouteGuideServerTest.java" beforeDir="false" />
+    <list default="true" id="2a84ffa2-fa13-4a3a-81fe-2472853ca85e" name="Default Changelist" comment="added single main program">
+      <change afterPath="$PROJECT_DIR$/hc-face-examples.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples.iml" beforeDir="false" afterPath="$PROJECT_DIR$/examples.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/examples.ipr" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples.iws" beforeDir="false" afterPath="$PROJECT_DIR$/examples.iws" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kanbig/faceservice/FaceServiceClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kanbig/faceservice/FaceServiceClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kanbig/faceservice/config/GrpcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kanbig/faceservice/config/GrpcConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kanbig/faceservice/controllor/DemoControllor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kanbig/faceservice/controllor/DemoControllor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/proto/imageservice.proto" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/proto/imageservice.proto" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$USER_HOME$/CLionProjects/faceservice/java-clients/huicheng-examples">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
   </component>
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
@@ -94,12 +33,41 @@
         <task path="$PROJECT_DIR$/build.gradle">
           <activation />
         </task>
-        <projects_view />
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <task path="$USER_HOME$/CLionProjects/faceservice/java-clients/huicheng-examples">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="hc-face-examples" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="hc-face-examples" type="f1a62948:ProjectNode" />
+                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
       </state>
     </system>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="1l8c2ffrxHlYryFp6hPvSpEi0qa" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -110,9 +78,32 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="settings.editor.selected.configurable" value="gradle.compiler" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$/CLionProjects/faceservice/java-clients/huicheng-examples/build.gradle" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.kanbig.faceservice" />
+    </key>
   </component>
   <component name="RunManager" selected="Application.FaceServiceClient">
+    <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.kanbig.faceservice.Application" />
+      <module name="examples" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.kanbig.faceservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="FaceServiceClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.kanbig.faceservice.FaceServiceClient" />
       <module name="examples" />
@@ -126,35 +117,128 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="/home/charlie/grpc-java/examples/build.gradle" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="hc-face-examples" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/build.gradle" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
+        <option name="scriptParameters" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
-          <list>
-            <option value="installDist" />
-          </list>
+          <list />
         </option>
-        <option name="vmOptions" value="" />
+        <option name="vmOptions" />
       </ExternalSystemSettings>
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="huicheng-examples [assemble]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$USER_HOME$/CLionProjects/faceservice/java-clients/huicheng-examples" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="assemble" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="huicheng-examples [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$USER_HOME$/CLionProjects/faceservice/java-clients/huicheng-examples" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <module name="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <module name="" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
-      <item itemvalue="Gradle./home/charlie/grpc-java/examples/build.gradle" />
       <item itemvalue="Application.FaceServiceClient" />
+      <item itemvalue="Application.Application" />
+      <item itemvalue="Gradle.huicheng-examples [build]" />
+      <item itemvalue="Gradle.huicheng-examples [assemble]" />
+      <item itemvalue="Gradle.hc-face-examples" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.FaceServiceClient" />
-        <item itemvalue="Gradle./home/charlie/grpc-java/examples/build.gradle" />
+        <item itemvalue="Gradle.hc-face-examples" />
+        <item itemvalue="Gradle.huicheng-examples [build]" />
+        <item itemvalue="Gradle.huicheng-examples [assemble]" />
+        <item itemvalue="Application.Application" />
       </list>
     </recent_temporary>
   </component>
@@ -167,6 +251,14 @@
       <option name="presentableId" value="Default" />
       <updated>1606981953230</updated>
     </task>
+    <task id="LOCAL-00001" summary="added single main program">
+      <created>1607523643234</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1607523643234</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -180,5 +272,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added single main program" />
+    <option name="LAST_COMMIT_MESSAGE" value="added single main program" />
   </component>
 </project>
