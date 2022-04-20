@@ -5,13 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a84ffa2-fa13-4a3a-81fe-2472853ca85e" name="Default Changelist" comment="added single main program">
-      <change afterPath="$PROJECT_DIR$/hc-face-examples.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples.iml" beforeDir="false" afterPath="$PROJECT_DIR$/examples.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/examples.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/examples.ipr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/examples.iws" beforeDir="false" afterPath="$PROJECT_DIR$/examples.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kanbig/faceservice/FaceServiceClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kanbig/faceservice/FaceServiceClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kanbig/faceservice/config/GrpcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kanbig/faceservice/config/GrpcConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kanbig/faceservice/controllor/DemoControllor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kanbig/faceservice/controllor/DemoControllor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hc-face-examples.iml" beforeDir="false" afterPath="$PROJECT_DIR$/hc-face-examples.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kanbig/faceservice/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kanbig/imageservice/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kanbig/faceservice/FaceServiceClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kanbig/imageservice/ImageServiceClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kanbig/faceservice/config/GrpcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kanbig/imageservice/config/GrpcConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kanbig/faceservice/controllor/DemoControllor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kanbig/imageservice/controllor/DemoControllor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kanbig/faceservice/core/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kanbig/imageservice/core/Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kanbig/faceservice/core/Result.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kanbig/imageservice/core/Result.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/proto/imageservice.proto" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/proto/imageservice.proto" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -69,6 +72,16 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
   <component name="ProjectId" id="1l8c2ffrxHlYryFp6hPvSpEi0qa" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -79,18 +92,19 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/CLionProjects/faceservice/java-clients/huicheng-examples/build.gradle" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="two.files.diff.last.used.file" value="$USER_HOME$/CLionProjects/faceservice/protos/imageservice.proto" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.kanbig.faceservice" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.FaceServiceClient">
+  <component name="RunManager" selected="Application.ImageServiceClient">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.kanbig.faceservice.Application" />
       <module name="examples" />
@@ -104,8 +118,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FaceServiceClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.kanbig.faceservice.FaceServiceClient" />
+    <configuration name="ImageServiceClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.kanbig.imageservice.ImageServiceClient" />
       <module name="examples" />
       <extension name="coverage">
         <pattern>
@@ -179,62 +193,26 @@
       <method v="2" />
     </configuration>
     <configuration default="true" type="JetRunConfigurationType">
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <module name="" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
       <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
-      <module name="" />
-      <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.FaceServiceClient" />
       <item itemvalue="Application.Application" />
+      <item itemvalue="Application.ImageServiceClient" />
       <item itemvalue="Gradle.huicheng-examples [build]" />
       <item itemvalue="Gradle.huicheng-examples [assemble]" />
       <item itemvalue="Gradle.hc-face-examples" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.FaceServiceClient" />
+        <item itemvalue="Application.ImageServiceClient" />
         <item itemvalue="Gradle.hc-face-examples" />
         <item itemvalue="Gradle.huicheng-examples [build]" />
         <item itemvalue="Gradle.huicheng-examples [assemble]" />
@@ -258,7 +236,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607523643234</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="added single main program">
+      <created>1616412923545</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1616412923545</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -271,7 +256,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added single main program" />

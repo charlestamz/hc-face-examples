@@ -1,4 +1,4 @@
-package com.kanbig.faceservice.config;
+package com.kanbig.imageservice.config;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.kanbig.faceservice.KanbigImageServiceGrpc;
+import com.kanbig.imageservice.KanbigImageServiceGrpc;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;

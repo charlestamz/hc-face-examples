@@ -1,7 +1,8 @@
 
-package com.kanbig.faceservice;
+package com.kanbig.imageservice;
 
 import com.google.protobuf.ByteString;
+import com.kanbig.imageservice.*;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.StatusRuntimeException;
@@ -15,10 +16,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * A simple client that requests a greeting from the {@link FaceServiceClient}.
+ * A simple client that requests a greeting from the {@link ImageServiceClient}.
  */
-public class FaceServiceClient {
-    private static final Logger logger = Logger.getLogger(FaceServiceClient.class.getName());
+public class ImageServiceClient {
+    private static final Logger logger = Logger.getLogger(ImageServiceClient.class.getName());
 
     private final ManagedChannel channel;
 
@@ -27,7 +28,7 @@ public class FaceServiceClient {
     /**
      * Construct client connecting to HelloWorld server at {@code host:port}.
      */
-    public FaceServiceClient(String host, int port) {
+    public ImageServiceClient(String host, int port) {
         this(ManagedChannelBuilder.forAddress(host, port)
                 // Channels are secure by default (via SSL/TLS). For the example we disable TLS to avoid
                 // needing certificates.
@@ -38,7 +39,7 @@ public class FaceServiceClient {
     /**
      * Construct client for accessing HelloWorld server using the existing channel.
      */
-    FaceServiceClient(ManagedChannel channel) {
+    ImageServiceClient(ManagedChannel channel) {
         this.channel = channel;
         blockingStub = KanbigImageServiceGrpc.newBlockingStub(channel);
     }
@@ -220,7 +221,7 @@ public class FaceServiceClient {
      * greeting.
      */
     public static void main(String[] args) throws Exception {
-        FaceServiceClient client = new FaceServiceClient("127.0.0.1", 50051);
+        ImageServiceClient client = new ImageServiceClient("127.0.0.1", 50051);
         try {
             /* Access a service running on the local machine on port 50051 */
             String user = "world";

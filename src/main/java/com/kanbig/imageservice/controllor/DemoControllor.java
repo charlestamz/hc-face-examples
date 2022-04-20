@@ -1,8 +1,10 @@
-package com.kanbig.faceservice.controllor;
+package com.kanbig.imageservice.controllor;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.kanbig.imageservice.core.Model;
+import com.kanbig.imageservice.core.Result;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,20 +15,18 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.protobuf.ByteString;
-import com.kanbig.faceservice.CompareFeatureRequest;
-import com.kanbig.faceservice.CompareImageRequest;
-import com.kanbig.faceservice.CompareOnDbRequest;
-import com.kanbig.faceservice.FaceCompareResponse;
-import com.kanbig.faceservice.FaceFindResponse;
-import com.kanbig.faceservice.FaceResponse;
-import com.kanbig.faceservice.FeatureResponse;
-import com.kanbig.faceservice.Image;
-import com.kanbig.faceservice.ImageRequest;
-import com.kanbig.faceservice.ImageRequest.Builder;
-import com.kanbig.faceservice.KanbigImageServiceGrpc;
-import com.kanbig.faceservice.OpResponse;
-import com.kanbig.faceservice.core.Model;
-import com.kanbig.faceservice.core.Result;
+import com.kanbig.imageservice.CompareFeatureRequest;
+import com.kanbig.imageservice.CompareImageRequest;
+import com.kanbig.imageservice.CompareOnDbRequest;
+import com.kanbig.imageservice.FaceCompareResponse;
+import com.kanbig.imageservice.FaceFindResponse;
+import com.kanbig.imageservice.FaceResponse;
+import com.kanbig.imageservice.FeatureResponse;
+import com.kanbig.imageservice.Image;
+import com.kanbig.imageservice.ImageRequest;
+import com.kanbig.imageservice.ImageRequest.Builder;
+import com.kanbig.imageservice.KanbigImageServiceGrpc;
+import com.kanbig.imageservice.OpResponse;
 
 @RestController
 @RequestMapping("demo")
@@ -38,8 +38,8 @@ public class DemoControllor {
 
 	@PostMapping("enroll")
 	public Result enroll(@RequestParam("files") MultipartFile files,
-			@RequestParam(name = "personId", defaultValue = "") String personId,
-			@RequestParam(name = "option", defaultValue = "-1") int option) {
+						 @RequestParam(name = "personId", defaultValue = "") String personId,
+						 @RequestParam(name = "option", defaultValue = "-1") int option) {
 		List<Model> res = new ArrayList<>();
 		if (files != null) {
 			try {
@@ -105,7 +105,7 @@ public class DemoControllor {
 				Image image = Image.newBuilder().setFilename(files.getOriginalFilename())
 						.setData(ByteString.copyFrom(files.getBytes())).build();
 				long t2 = System.currentTimeMillis();
-				com.kanbig.faceservice.CompareOnDbRequest.Builder c = CompareOnDbRequest.newBuilder().setImg(image)
+				com.kanbig.imageservice.CompareOnDbRequest.Builder c = CompareOnDbRequest.newBuilder().setImg(image)
 						.setFaceId(faceId).setListId(db);
 				if (option > -1) {
 					c.setOption(option);
@@ -133,7 +133,7 @@ public class DemoControllor {
 				Image image2 = Image.newBuilder().setFilename(file2.getOriginalFilename())
 						.setData(ByteString.copyFrom(file2.getBytes())).build();
 				long t2 = System.currentTimeMillis();
-				com.kanbig.faceservice.CompareImageRequest.Builder c = CompareImageRequest.newBuilder().setImg(image1)
+				com.kanbig.imageservice.CompareImageRequest.Builder c = CompareImageRequest.newBuilder().setImg(image1)
 						.setOrigin(image2);
 				if (option > -1) {
 					c.setOption(option);

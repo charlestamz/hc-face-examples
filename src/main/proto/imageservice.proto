@@ -1,7 +1,7 @@
 syntax = "proto2";
 package image_service;
 option java_multiple_files = true;
-option java_package = "com.kanbig.faceservice";
+option java_package = "com.kanbig.imageservice";
 /*
 option go_package = "kanbig/face_service";
 option java_multiple_files = true;
@@ -198,6 +198,18 @@ message OpResponse {
   optional float quality = 3; //人脸质量
   optional string reason = 4; //失败原因
 }
+message FaceDbRequest{
+  required int32 list_id = 1;
+}
+
+message ListItem{
+  required int32 face_idx = 1;
+  optional string personID = 2;
+  optional string name = 3;
+}
+message FaceDbListResponse {
+  repeated ListItem items = 1;
+}
 
 service KanbigImageService {
 
@@ -286,6 +298,14 @@ service KanbigImageService {
   查找人脸在图片中的位置
    */
   rpc FindFaces(ImageRequest) returns (FaceFindResponse){
+
+  }
+
+  rpc ClearFaceDB(FaceDbRequest) returns (OpResponse){
+
+  }
+
+  rpc ListFaceDb(FaceDbRequest) returns (FaceDbListResponse){
 
   }
 

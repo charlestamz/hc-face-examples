@@ -1,4 +1,4 @@
-package com.kanbig.faceservice.core;
+package com.kanbig.imageservice.core;
 
 import java.io.Serializable;
 
